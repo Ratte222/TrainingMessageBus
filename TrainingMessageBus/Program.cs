@@ -28,15 +28,19 @@ internal class Program
 
             x.AddConsumer<MessageConsumer>();
 
-            x.UsingRabbitMq((context, cfg) =>
+            x.UsingInMemory((context, cfg) =>
             {
-                cfg.Host("localhost", "/", h =>
-                {
-                    h.Username("RabbitMQ");
-                    h.Password("RabbitMQ");
-                });
                 cfg.ConfigureEndpoints(context);
             });
+            //x.UsingRabbitMq((context, cfg) =>
+            //{
+            //    cfg.Host("localhost", "/", h =>
+            //    {
+            //        h.Username("RabbitMQ");
+            //        h.Password("RabbitMQ");
+            //    });
+            //    cfg.ConfigureEndpoints(context);
+            //});
         });
 
         var app = builder.Build();
